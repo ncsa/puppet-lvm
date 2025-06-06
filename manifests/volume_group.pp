@@ -38,17 +38,19 @@ define lvm::volume_group (
         ensure           => $ensure,
       }
     )
+    $pvs = $physical_volumes.keys()
   }
   else {
     physical_volume { $physical_volumes:
       ensure => $ensure,
     }
+    $pvs = $physical_volumes
   }
 
   volume_group { $name:
     ensure           => $ensure,
     createonly       => $createonly,
-    physical_volumes => $physical_volumes,
+    physical_volumes => $pvs,
     followsymlinks   => $followsymlinks,
   }
 
