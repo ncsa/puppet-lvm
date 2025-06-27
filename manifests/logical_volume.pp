@@ -60,7 +60,7 @@
 #
 # @param alloc The allocation policy when a command needs to allocate Physical Extents from the Volume Group.
 #
-# @param yes_flag If set to true, do not prompt for confirmation interactively but always assume the answer yes.
+# param yes_flag If set to true, do not prompt for confirmation interactively but always assume the answer yes.
 #
 define lvm::logical_volume (
   String[1] $volume_group,
@@ -90,7 +90,7 @@ define lvm::logical_volume (
   Optional[Boolean] $no_sync                                                    = undef,
   Optional[Variant[String[1], Integer]] $region_size                            = undef,
   Optional[Enum['anywhere', 'contiguous', 'cling', 'inherit', 'normal']] $alloc = undef,
-  Boolean $yes_flag                                                             = false,
+  # Boolean $yes_flag                                                             = false,
 ) {
   $lvm_device_path = "/dev/${volume_group}/${name}"
 
@@ -152,7 +152,7 @@ define lvm::logical_volume (
     no_sync          => $no_sync,
     region_size      => $region_size,
     alloc            => $alloc,
-    yes_flag         => $yes_flag,
+    # yes_flag         => $yes_flag,
   }
 
   if $createfs {
